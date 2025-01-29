@@ -91,6 +91,34 @@ const Sidebar = () => {
           ]
         }
       ]
+    },
+    {
+      id: 'comms',
+      title: 'Comunicaciones',
+      icon: <AnalyticsIcon />,
+      submenu: [
+        {
+          id: 'comms-overview',
+          title: 'Buzón',
+          path: '/comms/buzon'
+        },
+        {
+          id: 'comms-reports',
+          title: 'Comunicaciones',
+          submenu: [
+            {
+              id: 'analytics-reports-sales',
+              title: 'Contactos',
+              path: '/comms/contacts'
+            },
+            {
+              id: 'analytics-reports-traffic',
+              title: 'Análisis de tráfico',
+              path: '/comms/reports/traffic'
+            }
+          ]
+        }
+      ]
     }
   ];
 

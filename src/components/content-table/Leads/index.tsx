@@ -1,9 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import LeadFunnel from './LeadFunnel';
+import LeadDetails from './LeadDetail';
 
 interface FormsTableProps { }
 
 const FormsTable: FC<FormsTableProps> = () => {
+    const [selectedLead, setSelectedLead] = useState<number | null>(null);
+    const [showNewLead, setShowNewLead] = useState(false);
+    
     const leads = [
         {
           id: 1,
@@ -38,22 +42,35 @@ const FormsTable: FC<FormsTableProps> = () => {
       const handleLeadAction = (leadId: number, action: string) => {
         switch (action) {
           case 'edit':
-            console.log(`Editando lead ${leadId}`);
-            // Aquí irá tu lógica de edición
+            setSelectedLead(leadId);
             break;
           case 'advance':
             console.log(`Avanzando etapa del lead ${leadId}`);
-            // Aquí irá tu lógica para avanzar la etapa
             break;
           default:
             console.log(`Acción ${action} no implementada`);
         }
       };
+
+      const handleNewLead = () => {
+        setShowNewLead(true);
+      };
+
+      if (showNewLead) {
+        return <LeadDetails isNew />;
+      }
+
+      if (selectedLead) {
+        const lead = leads.find(l => l.id === selectedLead);
+        return <LeadDetails lead={lead} />;
+      }
+
     return (
         <>
             <LeadFunnel
                 leads={leads}
                 onLeadAction={handleLeadAction}
+                onNewLead={handleNewLead}
             />
         </>
     );

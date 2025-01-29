@@ -1,0 +1,40 @@
+export interface Client {
+    id: number;
+    email: string;
+    name: string;
+    level: number;
+    tagSassd: string;
+    statusId: number;
+    quantitySims: number;
+    mainPhone: string | null;
+    score: number | null;
+    responsible_user_id: number | null;
+    webPage: string | null;
+    created_by: number;
+    idCompanyKommo: number;
+    languageId: number | null;
+    preferredCurrencyId: number;
+    userSalesId: number;
+    fatherCompanyClientId: number;
+    isActive: boolean;
+    created_at: string;
+    updated_at: string;
+    countryId: number;
+    referenceId: number | null;
+    serviceId: number | null;
+    nuClient: string;
+    idSupplierSims: number | null;
+    isLocal: boolean;
+    externalPlatformId: number | null;
+    tagPlatform: string | null;
+    statusCrmId: number | null;
+    leadId: number | null;
+    leadName: string | null;
+    status: {
+        id: number;
+        name: string;
+        creationDate: string;
+        updateDate: string;
+        isActive: boolean;
+    };
+}
