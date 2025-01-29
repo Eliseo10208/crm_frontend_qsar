@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Sidebar from './layout/Aside/Aside';
 import AsideRoutes from './routes/asideRoutes';

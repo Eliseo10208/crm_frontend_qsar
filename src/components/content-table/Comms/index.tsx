@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import MessageThread from './HistoryTable';
 import MessageView from './InboxChat';
-import { useNavigate } from 'react-router-dom';
 
 type MessageSource = 'whatsapp' | 'email' | 'facebook' | 'instagram';
 
@@ -59,7 +57,6 @@ const FormsTable: FC<FormsTableProps> = () => {
 
     const [showMessageView, setShowMessageView] = useState(false);
     const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
-    const navigate = useNavigate();
     const handleToggleStar = (messageId: number) => {
         setMessages(messages.map(msg =>
             msg.id === messageId ? { ...msg, starred: !msg.starred } : msg

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 type DataPoint = {
   label: string;
@@ -17,7 +17,7 @@ interface BarChartProps {
   data,
   width = 600,
   height = 400,
-  barColor = '#3b82f6',
+  // barColor = '#BC004D',
   title = 'Bar Chart'
 }) => {
   const [hoveredBar, setHoveredBar] = useState<number | null>(null);

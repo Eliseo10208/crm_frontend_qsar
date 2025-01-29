@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import MessageView from '../Comms/InboxChat';
 
 interface Lead {

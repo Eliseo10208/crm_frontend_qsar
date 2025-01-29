@@ -1,6 +1,5 @@
 import { useState } from "react";
 import LeadDetailModal from "./LeadModal";
-import { PhoneIcon } from "../../icon/svg-icons";
 
 interface Lead {
   id: number;

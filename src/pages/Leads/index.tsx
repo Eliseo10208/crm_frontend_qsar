@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import  { FC } from 'react';
 import FormsTable from '../../components/content-table/Leads';
 
 interface LeadsProps { }

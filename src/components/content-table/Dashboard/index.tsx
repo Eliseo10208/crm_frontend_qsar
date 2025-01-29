@@ -1,10 +1,8 @@
-import React, { FC } from 'react';
-import TopSellers from './table';
+import { FC } from 'react';
 import ClientContacts from './ClientTable';
 import { CustomBarChart } from '../../custom/Graphics/CustomBarChart';
 import TopClients from './topClients';
-import { data, clientsData, sampleData, PieData } from '../../../utils/dummi/data';
-import CustomPieChart from '../../custom/Graphics/CustomPieChart';
+import { data, clientsData, sampleData } from '../../../utils/dummi/data';
 import Calendar from '../../custom/Calendar/Caldendar';
 interface FormsTableProps { }
 

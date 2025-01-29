@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // Definir la interfaz para el tipo de mensaje
 interface Message {
