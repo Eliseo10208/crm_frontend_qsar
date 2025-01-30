@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Leads from '../pages/Leads';
 import Buzon from '../pages/Comms/Buzon';
 import Contacts from '../pages/Comms/Contacts';
+import Traffic from '../pages/Comms/Traffic';
 const AsideRoutes = () => {
   return (
     <Routes>
@@ -12,6 +13,7 @@ const AsideRoutes = () => {
       <Route path="/leads" element={<Leads />} />
       <Route path="/comms/buzon" element={<Buzon />} />
       <Route path="/comms/contacts" element={<Contacts />} />
+      <Route path="/comms/reports/traffic" element={<Traffic />} />
       {/* Agrega más rutas aquí según sea necesario */}
     </Routes>
   );

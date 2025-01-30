@@ -9,6 +9,8 @@ const FormsTable: FC<FormsTableProps> = () => {
     const [data, setData] = useState<Client[]>([])
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
+    const [selectedContact, setSelectedContact] = useState<Client | null>(null);
     const itemsPerPage = 7;
 
     useEffect(() => {
@@ -25,16 +27,25 @@ const FormsTable: FC<FormsTableProps> = () => {
         setSearchTerm(event.target.value);
     };
 
-    const filteredContacts = data.filter((contact) =>
-        contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.email.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredContacts = data.filter((contact) => {
+        const searchTermLower = searchTerm.toLowerCase();
+        const name = contact.name || '';
+        const email = contact.email || '';
+        
+        return name.toLowerCase().includes(searchTermLower) ||
+               email.toLowerCase().includes(searchTermLower);
+    });
 
     const totalPages = Math.ceil(filteredContacts.length / itemsPerPage);
     const currentContacts = filteredContacts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
+    };
+
+    const handleMessageClick = (contact: Client) => {
+        setSelectedContact(contact);
+        setIsOffcanvasOpen(true);
     };
 
     return (
@@ -105,6 +116,15 @@ const FormsTable: FC<FormsTableProps> = () => {
                                         </button>
                                         <button
                                             className="p-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
+                                            title="Enviar Mensaje"
+                                            onClick={() => handleMessageClick(contact)}
+                                        >
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                            </svg>
+                                        </button>
+                                        <button
+                                            className="p-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
                                             title="Llamar"
                                         >
                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,6 +138,43 @@ const FormsTable: FC<FormsTableProps> = () => {
                     </tbody>
                 </table>
             </div>
+
+            {/* Offcanvas for Message Templates */}
+            {isOffcanvasOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
+                    <div className="fixed right-0 top-0 h-full w-96 bg-white shadow-lg p-6 transform transition-transform duration-300">
+                        <div className="flex justify-between items-center mb-6">
+                            <h3 className="text-xl font-bold">Enviar Mensaje</h3>
+                            <button
+                                onClick={() => setIsOffcanvasOpen(false)}
+                                className="p-2 rounded-full hover:bg-gray-100"
+                            >
+                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div className="mb-4">
+                            <p className="text-gray-600">Enviando mensaje a:</p>
+                            <p className="font-medium">{selectedContact?.name}</p>
+                        </div>
+
+                        <div className="space-y-4">
+                            <h4 className="font-medium">Seleccionar Plantilla:</h4>
+                            {/* Add your message templates here */}
+                            <div className="border rounded-lg p-4 cursor-pointer hover:bg-gray-50">
+                                <h5 className="font-medium">Plantilla 1</h5>
+                                <p className="text-sm text-gray-600">Descripción breve de la plantilla...</p>
+                            </div>
+                            <div className="border rounded-lg p-4 cursor-pointer hover:bg-gray-50">
+                                <h5 className="font-medium">Plantilla 2</h5>
+                                <p className="text-sm text-gray-600">Descripción breve de la plantilla...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <div className="flex justify-between items-center mt-4">
                 <button
