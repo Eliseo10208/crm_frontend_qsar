@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Card, Typography } from "@mui/material";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import { Clock, MessageSquare, Timer, TrendingUp, Users } from 'lucide-react';
+import { MessageSquare, Timer, TrendingUp, Users } from 'lucide-react';
 
 interface TrafficDashboardProps {}
 
